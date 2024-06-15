@@ -63,4 +63,14 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = context.ReadValue<Vector2>().x;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 衝突したオブジェクトが敵である場合
+        if (collision.CompareTag("Enemy"))
+        {
+            // ジャンプする
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            Destroy(collision.gameObject);
+        }
+    }
 }
