@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections;
 
-public class GoombaController : MonoBehaviour
+public class EnemySnake : MonoBehaviour
 {
-    public float speed = 1.0f; // 移動速度
+    public float speed = 5.0f; // 移動速度
     public Transform leftBoundary; // 左の境界位置
     public Transform rightBoundary; // 右の境界位置
+    public float jumpForce = 10.0f; // ジャンプ力
+    public float jumpInterval = 5.0f; // ジャンプの間隔
 
     private Rigidbody2D rb; // Rigidbody2Dコンポーネントの参照
     private bool movingLeft = true; // 現在の移動方向を示すフラグ
@@ -14,6 +17,9 @@ public class GoombaController : MonoBehaviour
     {
         // Rigidbody2Dコンポーネントを取得
         rb = GetComponent<Rigidbody2D>();
+
+        // ジャンプのコルーチンを開始
+        StartCoroutine(JumpRoutine());
     }
 
     // 毎フレームの更新処理
@@ -58,6 +64,16 @@ public class GoombaController : MonoBehaviour
         }
     }
 
+    // ジャンプのコルーチン
+    IEnumerator JumpRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(jumpInterval); // ジャンプ間隔を待つ
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse); // ジャンプ力を追加
+        }
+    }
+
     // トリガー衝突時の処理
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -68,4 +84,3 @@ public class GoombaController : MonoBehaviour
         }
     }
 }
-
