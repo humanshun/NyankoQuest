@@ -118,8 +118,8 @@ MonoBehaviour:
   speed: 5
   leftBoundary: {fileID: 1840036102878471435, guid: 971d2e62ba02b504e95f38e37e0a2681, type: 3}
   rightBoundary: {fileID: 5721906404740243218, guid: 5defa2fdc4d312e4a8c64cfb2971f3bd, type: 3}
-  jumpForce: 10
-  jumpInterval: 5
+  jumpForce: 20
+  jumpInterval: 3
 --- !u!212 &2655037558985889692
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -187,7 +187,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
