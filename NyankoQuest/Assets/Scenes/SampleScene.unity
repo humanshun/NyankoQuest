@@ -581,12 +581,20 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6791879161782510213, guid: bb92105be787618498831a11a183167d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.23186636
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791879161782510213, guid: bb92105be787618498831a11a183167d, type: 3}
       propertyPath: m_Size.y
-      value: 0.17096162
+      value: 0.4934616
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791879161782510213, guid: bb92105be787618498831a11a183167d, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0113556385
       objectReference: {fileID: 0}
     - target: {fileID: 6791879161782510213, guid: bb92105be787618498831a11a183167d, type: 3}
       propertyPath: m_Offset.y
-      value: -1.087582
+      value: -0.9944658
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
