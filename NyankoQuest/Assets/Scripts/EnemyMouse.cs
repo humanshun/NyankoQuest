@@ -58,14 +58,14 @@ public class EnemyMouse : MonoBehaviour
         }
     }
 
-    // トリガー衝突時の処理
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 衝突したオブジェクトがプレイヤーである場合
-        if (collision.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
+    // // トリガー衝突時の処理
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     // 衝突したオブジェクトがプレイヤーである場合
+    //     if (collision.CompareTag("Player"))
+    //     {
+    //         Destroy(collision.gameObject);
+    //     }
+    // }
 }
 
