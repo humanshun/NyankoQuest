@@ -890,24 +890,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 961490678471413268, guid: 778acf4ca1e87e94ea422cd4d9116443, type: 3}
   m_PrefabInstance: {fileID: 1856719626}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &182062638 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5951799855696162812, guid: bb92105be787618498831a11a183167d, type: 3}
-  m_PrefabInstance: {fileID: 1024243873}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &182062644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182062638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9adc8045c5dbf642a1a32309e425ae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: GameOver
 --- !u!1 &185309841
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 185309843}
+  - component: {fileID: 185309845}
   - component: {fileID: 185309842}
   - component: {fileID: 185309844}
   m_Layer: 0
@@ -968,7 +951,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1038,6 +1021,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &185309845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185309841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c780bfd0dcc6243a8f7cea5477ff20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 2115255086}
 --- !u!1001 &194376246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5603,10 +5599,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3123870055797075589, guid: bb92105be787618498831a11a183167d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1197185418}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5951799855696162812, guid: bb92105be787618498831a11a183167d, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 182062644}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb92105be787618498831a11a183167d, type: 3}
 --- !u!1001 &1024628529
 PrefabInstance:
@@ -8762,6 +8755,10 @@ PrefabInstance:
       value: EnemyMouse
       objectReference: {fileID: 0}
     - target: {fileID: 1961459647530766434, guid: a899030f4a3c5fa448c68209b2f65987, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2115255086}
+    - target: {fileID: 1961459647530766434, guid: a899030f4a3c5fa448c68209b2f65987, type: 3}
       propertyPath: leftBoundary
       value: 
       objectReference: {fileID: 631815772}
@@ -11708,6 +11705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2115255085}
+  - component: {fileID: 2115255086}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11730,6 +11728,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2115255086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115255084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12eb5019a891104698a6eccf6eaf2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: GameOver
 --- !u!4 &2118233302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 961490678471413268, guid: 778acf4ca1e87e94ea422cd4d9116443, type: 3}

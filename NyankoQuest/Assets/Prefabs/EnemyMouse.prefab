@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  leftBoundary: {fileID: 0}
-  rightBoundary: {fileID: 0}
+  leftBoundary: {fileID: 1840036102878471435, guid: 971d2e62ba02b504e95f38e37e0a2681, type: 3}
+  rightBoundary: {fileID: 5721906404740243218, guid: 5defa2fdc4d312e4a8c64cfb2971f3bd, type: 3}
+  gameManager: {fileID: 0}
 --- !u!212 &3929808854694740404
 SpriteRenderer:
   m_ObjectHideFlags: 0
