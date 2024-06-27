@@ -6,19 +6,21 @@ public class CheckPoint : MonoBehaviour
 {
     public GameObject checkPointObject;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        // 例えば、プレイヤーがトリガーに入った時だけチェックポイントを保存したい場合
+        if (other.CompareTag("Player"))
         {
             SaveCheckPoint();
         }
     }
+
     void SaveCheckPoint()
     {
-        Debug.Log("aaaa");
+        Debug.Log("Checkpoint saved at position: " + checkPointObject.transform.position);
         PlayerPrefs.SetFloat("CheckPointX", checkPointObject.transform.position.x);
-        PlayerPrefs.SetFloat("CheckPointY", checkPointObject.transform.position.x);
-        PlayerPrefs.SetFloat("CheckPointZ", checkPointObject.transform.position.x);
+        PlayerPrefs.SetFloat("CheckPointY", checkPointObject.transform.position.y);
+        PlayerPrefs.SetFloat("CheckPointZ", checkPointObject.transform.position.z);
         PlayerPrefs.Save();
     }
 }

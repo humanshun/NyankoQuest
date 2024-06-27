@@ -798,7 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d29c95b880d284993dc94cdd164852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1973200685}
+  Restart: {fileID: 1973200685}
   sceneName: 4thStage
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

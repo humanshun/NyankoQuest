@@ -7,11 +7,11 @@ using Unity.VisualScripting;
 
 public class ButtonSceneChange : MonoBehaviour
 {
-    [SerializeField] private Button button;
+    [SerializeField] private Button Restart;
     [SerializeField] private string sceneName;
     void Start()
     {
-        button.onClick.AddListener(OnButtonClicked);
+        Restart.onClick.AddListener(OnButtonClicked);
     }
     void OnButtonClicked()
     {
