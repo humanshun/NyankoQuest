@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2288159095014184519}
+  - component: {fileID: 1961459647530766434}
   - component: {fileID: 3929808854694740404}
   - component: {fileID: 392053902256238709}
   - component: {fileID: 1576051980690550659}
-  - component: {fileID: 1961459647530766434}
   m_Layer: 0
   m_Name: EnemyMouse
   m_TagString: Enemy
@@ -36,6 +36,22 @@ Transform:
   - {fileID: 8612867455653594435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1961459647530766434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755618858899633252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124761e46c9acfe4daca42b15f00c711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  leftBoundary: {fileID: 1840036102878471435, guid: 971d2e62ba02b504e95f38e37e0a2681, type: 3}
+  rightBoundary: {fileID: 5721906404740243218, guid: 5defa2fdc4d312e4a8c64cfb2971f3bd, type: 3}
+  gameManager: {fileID: 0}
 --- !u!212 &3929808854694740404
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,21 +166,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1961459647530766434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 755618858899633252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 124761e46c9acfe4daca42b15f00c711, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  leftBoundary: {fileID: 0}
-  rightBoundary: {fileID: 0}
 --- !u!1 &6012997297894979765
 GameObject:
   m_ObjectHideFlags: 0
