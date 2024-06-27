@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     public float speed;
     public float jumpingPower;
+    public float enemyDieJump;
     private bool isFacingRight = true;
 
     void Start()
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             // ジャンプする
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            rb.velocity = new Vector2(rb.velocity.x, enemyDieJump);
             Destroy(collision.gameObject);
         }
     }
