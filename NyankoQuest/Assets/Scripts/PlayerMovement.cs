@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public float jumpingPower;
     public float enemyDieJump;
     private bool isFacingRight = true;
-    public float fallThreshold = -1f;  // 落下とみなす高さの閾値
 
     void Start()
     {
@@ -32,10 +31,6 @@ public class PlayerController : MonoBehaviour
         else if (!isFacingRight && horizontal > 0f)
         {
             Flip();
-        }
-        if (transform.position.y < fallThreshold)  // プレイヤーが閾値以下に落ちたかチェック
-        {
-            Respawn();  // リスポーン処理を呼び出す
         }
     }
 
@@ -78,15 +73,5 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, enemyDieJump);
             Destroy(collision.gameObject);
         }
-    }
-    void Respawn()
-    {
-        float respawnX = PlayerPrefs.GetFloat("CheckPointX", 0);  // チェックポイントのX座標を読み込む
-        float respawnY = PlayerPrefs.GetFloat("CheckPointY", 0);  // チェックポイントのY座標を読み込む
-        float respawnZ = PlayerPrefs.GetFloat("CheckPointZ", 0);  // チェックポイントのZ座標を読み込む
-
-        transform.position = new Vector3(respawnX, respawnY, respawnZ);  // プレイヤーをチェックポイントに移動
-
-        Debug.Log("Respawned at checkpoint: " + transform.position);
     }
 }
