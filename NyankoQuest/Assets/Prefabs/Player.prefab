@@ -164,6 +164,7 @@ MonoBehaviour:
     m_Bits: 256
   speed: 6
   jumpingPower: 12
+  enemyDieJump: 0
 --- !u!212 &5914087850897360993
 SpriteRenderer:
   m_ObjectHideFlags: 0
