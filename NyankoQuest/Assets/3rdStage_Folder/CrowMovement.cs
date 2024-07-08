@@ -1,32 +1,31 @@
 using UnityEngine;
 
-public class EnemyMouse : MonoBehaviour
+using System.Collections;
+
+public class CrowMovement : MonoBehaviour
 {
-    public float speed = 1.0f; // 移動速度
+    public float speed = 5f; // カラスの左右移動速度
     public Transform leftBoundary; // 左の境界位置
     public Transform rightBoundary; // 右の境界位置
-    public GameManager gameManager;
-    private Rigidbody2D rb; // Rigidbody2Dコンポーネントの参照
-    private bool movingLeft = true; // 現在の移動方向を示すフラグ
-    
+    public float jumpInterval = 5.0f; // ジャンプの間隔
+    public float jumpForce = 10.0f; // ジャンプ力
+    private Rigidbody2D rb;
+    private bool movingLeft = true;
+    private Animator anim;
 
-    // 初期化処理
     void Start()
     {
-        // Rigidbody2Dコンポーネントを取得
+        // anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(JumpRoutine());
     }
 
-    // 毎フレームの更新処理
     void Update()
     {
-        // クリボーの移動処理を呼び出し
         Move();
-        // 移動方向のチェック処理を呼び出し
         CheckDirection();
     }
 
-    // クリボーの移動処理
     void Move()
     {
         // 移動方向に応じて速度を設定
@@ -42,7 +41,6 @@ public class EnemyMouse : MonoBehaviour
         }
     }
 
-    // 移動方向のチェック処理
     void CheckDirection()
     {
         // 左に移動中で左の境界を超えた場合
@@ -58,15 +56,12 @@ public class EnemyMouse : MonoBehaviour
             movingLeft = true;
         }
     }
-
-    // トリガー衝突時の処理
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator JumpRoutine()
     {
-        if(collision.gameObject.CompareTag("Player"))
+        while (true)
         {
-            Debug.Log("aaaaaaaaaaaaaa");
-            gameManager.GameOver();
+            yield return new WaitForSeconds(jumpInterval); // ジャンプ間隔を待つ
+            rb.AddForce(new Vector2(0, -jumpForce), ForceMode2D.Impulse); // ジャンプ力を追加
         }
     }
 }
-
