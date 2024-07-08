@@ -64,7 +64,6 @@ public class EnemyMouse : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("aaaaaaaaaaaaaa");
             gameManager.GameOver();
         }
     }

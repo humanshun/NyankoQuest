@@ -38,19 +38,19 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        // Animation();
+        Animation();
     }
-    // private void Animation()
-    // {
-    //     if (horizontal != 0)
-    //     {
-    //         animator.SetBool("Run", true);
-    //     }
-    //     else
-    //     {
-    //         animator.SetBool("Run", false);
-    //     }
-    // }
+    private void Animation()
+    {
+        if (horizontal != 0)
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
+    }
 
     public void Jump(InputAction.CallbackContext context)
     {
