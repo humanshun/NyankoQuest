@@ -5,9 +5,10 @@ public class EnemyMouse : MonoBehaviour
     public float speed = 1.0f; // 移動速度
     public Transform leftBoundary; // 左の境界位置
     public Transform rightBoundary; // 右の境界位置
-
+    public GameManager gameManager;
     private Rigidbody2D rb; // Rigidbody2Dコンポーネントの参照
     private bool movingLeft = true; // 現在の移動方向を示すフラグ
+    
 
     // 初期化処理
     void Start()
@@ -58,14 +59,13 @@ public class EnemyMouse : MonoBehaviour
         }
     }
 
-    // // トリガー衝突時の処理
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     // 衝突したオブジェクトがプレイヤーである場合
-    //     if (collision.CompareTag("Player"))
-    //     {
-    //         Destroy(collision.gameObject);
-    //     }
-    // }
+    // トリガー衝突時の処理
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            gameManager.GameOver();
+        }
+    }
 }
 

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemySnake : MonoBehaviour
 {
+    public GameManager gameManager;
     public float speed = 5.0f; // 移動速度
     public Transform leftBoundary; // 左の境界位置
     public Transform rightBoundary; // 右の境界位置
@@ -75,12 +76,11 @@ public class EnemySnake : MonoBehaviour
     }
 
     // トリガー衝突時の処理
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 衝突したオブジェクトがプレイヤーである場合
-        if (collision.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            gameManager.GameOver();
         }
     }
 }

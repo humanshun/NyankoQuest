@@ -7,16 +7,23 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private float horizontal;
+    private bool isFacingRight = true;
+    private Animator animator;
     public Transform groundCheck;
     public LayerMask groundLayer;
-    private float horizontal;
     public float speed;
     public float jumpingPower;
-    private bool isFacingRight = true;
+    public float enemyDieJump;
+    public float checkRadius;
+
+    public string Run = "Run";
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -30,6 +37,18 @@ public class PlayerController : MonoBehaviour
         else if (!isFacingRight && horizontal > 0f)
         {
             Flip();
+        }
+        Animation();
+    }
+    private void Animation()
+    {
+        if (horizontal != 0)
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
         }
     }
 
@@ -46,9 +65,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        // Gizmosの色を設定します。ここでは赤色に設定しています。
+        Gizmos.color = Color.red;
+
+        // groundCheckの位置に円を描画します。
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+    }
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
     private void Flip()
@@ -69,7 +96,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             // ジャンプする
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            rb.velocity = new Vector2(rb.velocity.x, enemyDieJump);
             Destroy(collision.gameObject);
         }
     }

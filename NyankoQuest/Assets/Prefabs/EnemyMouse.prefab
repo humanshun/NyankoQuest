@@ -51,6 +51,7 @@ MonoBehaviour:
   speed: 3
   leftBoundary: {fileID: 0}
   rightBoundary: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!212 &3929808854694740404
 SpriteRenderer:
   m_ObjectHideFlags: 0
