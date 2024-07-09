@@ -115,9 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41c7f7398a666e4994b64780003c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   speed: 5
-  leftBoundary: {fileID: 1840036102878471435, guid: 971d2e62ba02b504e95f38e37e0a2681, type: 3}
-  rightBoundary: {fileID: 5721906404740243218, guid: 5defa2fdc4d312e4a8c64cfb2971f3bd, type: 3}
+  leftBoundary: {fileID: 0}
+  rightBoundary: {fileID: 0}
   jumpForce: 20
   jumpInterval: 3
 --- !u!212 &2655037558985889692
