@@ -12,6 +12,7 @@ public class EnemySnake : MonoBehaviour
 
     private Rigidbody2D rb; // Rigidbody2Dコンポーネントの参照
     private bool movingLeft = true; // 現在の移動方向を示すフラグ
+    private bool isFacingRight = false;
 
     // 初期化処理
     void Start()
@@ -45,6 +46,14 @@ public class EnemySnake : MonoBehaviour
         {
             // 右に移動
             rb.velocity = new Vector2(speed, rb.velocity.y);
+        }
+        if (movingLeft && isFacingRight)
+        {
+            Flip();
+        }
+        else if (!movingLeft && !isFacingRight)
+        {
+            Flip();
         }
     }
 
@@ -82,5 +91,12 @@ public class EnemySnake : MonoBehaviour
         {
             gameManager.GameOver();
         }
+    }
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 }

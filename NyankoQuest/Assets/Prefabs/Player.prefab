@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 4830576606998922552}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.88, z: 0}
+  m_LocalPosition: {x: 0, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -259,7 +259,7 @@ MonoBehaviour:
   speed: 6
   jumpingPower: 12
   enemyDieJump: 16
-  checkRadius: 0.92
+  checkRadius: 0.73
   Run: Run
 --- !u!212 &5914087850897360993
 SpriteRenderer:
@@ -345,8 +345,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.007086396, y: -0.59662163}
-  m_Size: {x: 5.4316893, y: 6.2555037}
+  m_Offset: {x: -0.029725432, y: -0.59662163}
+  m_Size: {x: 3.90739, y: 6.2555037}
   m_Direction: 0
 --- !u!50 &1616038874795729831
 Rigidbody2D:
