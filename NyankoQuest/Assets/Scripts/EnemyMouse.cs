@@ -5,10 +5,10 @@ public class EnemyMouse : MonoBehaviour
     public float speed = 1.0f; // 移動速度
     public Transform leftBoundary; // 左の境界位置
     public Transform rightBoundary; // 右の境界位置
-    public GameManager gameManager;
+    public GameManager gameManager; // ゲームマネージャー
     private Rigidbody2D rb; // Rigidbody2Dコンポーネントの参照
     private bool movingLeft = true; // 現在の移動方向を示すフラグ
-    
+    private bool isFacingRight = true; // 現在の向きを示すフラグ
 
     // 初期化処理
     void Start()
@@ -40,6 +40,16 @@ public class EnemyMouse : MonoBehaviour
             // 右に移動
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
+
+        // 向きを変更するかチェック
+        if (movingLeft && isFacingRight)
+        {
+            Flip();
+        }
+        else if (!movingLeft && !isFacingRight)
+        {
+            Flip();
+        }
     }
 
     // 移動方向のチェック処理
@@ -59,13 +69,21 @@ public class EnemyMouse : MonoBehaviour
         }
     }
 
+    // 向きを変更する処理
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.y *= -1f;
+        transform.localScale = localScale;
+    }
+
     // トリガー衝突時の処理
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             gameManager.GameOver();
         }
     }
 }
-

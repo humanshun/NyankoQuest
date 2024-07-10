@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: nyan
+  m_Name: Snake
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 8098eb855d0dfaa4a94f7d721a2c389f, type: 3}
+      value: {fileID: 21300000, guid: 71aef5b74c5d67a42b437b786f42382d, type: 3}
+    - time: 0.33333334
+      value: {fileID: 21300000, guid: 9bfe07d093b490b4c88d01f7dc9ced5b, type: 3}
+    - time: 0.6666667
+      value: {fileID: 21300000, guid: df1f249a11762b542881334ace5bbb26, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 5b9bd179c13df2c4ab630063eb1cb282, type: 3}
+    - time: 1.3333334
+      value: {fileID: 21300000, guid: 5b9bd179c13df2c4ab630063eb1cb282, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +52,17 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 8098eb855d0dfaa4a94f7d721a2c389f, type: 3}
+    - {fileID: 21300000, guid: 71aef5b74c5d67a42b437b786f42382d, type: 3}
+    - {fileID: 21300000, guid: 9bfe07d093b490b4c88d01f7dc9ced5b, type: 3}
+    - {fileID: 21300000, guid: df1f249a11762b542881334ace5bbb26, type: 3}
+    - {fileID: 21300000, guid: 5b9bd179c13df2c4ab630063eb1cb282, type: 3}
+    - {fileID: 21300000, guid: 5b9bd179c13df2c4ab630063eb1cb282, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 1.35
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
