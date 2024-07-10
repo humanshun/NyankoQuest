@@ -2,27 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour
 {
-    public GameObject button;
-    // Start is called before the first frame update
+    [SerializeField] private Button button;
+    [SerializeField] private string changeSceneName;
+
     void Start()
     {
-        if (button != null)
-        {
-            button.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnClick);
-        }
+        button.onClick.AddListener(OnButtonClicked);
     }
 
-    void OnClick()
+    void OnButtonClicked()
     {
-        SceneManager.LoadScene("First stage");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene(changeSceneName);
     }
 }
