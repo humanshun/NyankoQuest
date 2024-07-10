@@ -6,18 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private float horizontal;
-    private bool isFacingRight = true;
-    private Animator animator;
-    public Transform groundCheck;
-    public LayerMask groundLayer;
-    public float speed;
-    public float jumpingPower;
-    public float enemyDieJump;
-    public float checkRadius;
+    private Rigidbody2D rb; //Rigidbody2D
+    private float horizontal; // 水平方向
+    private bool isFacingRight = true; // 
+    private Animator animator; // アニメーター
+    public Transform groundCheck; // groundCheckの位置
+    public LayerMask groundLayer; // グランドのレイヤー
+    public float speed; // プレイヤーの移動速度
+    public float jumpingPower; // プレイヤーのジャンプ
+    public float enemyDieJump; // 敵を踏んだ時のジャンプ
+    public float checkRadius; // groundCheck
 
-    public string Run = "Run";
+    public string Run = "Run"; //
 
 
     void Start()
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         }
         Animation();
     }
-    private void Animation()
+    private void Animation() //水平方向に入力があるときアニメーションを実行する
     {
         if (horizontal != 0)
         {
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Jump(InputAction.CallbackContext context) //ジャンプする
     {
         if (context.performed && IsGrounded())
         {
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() //グランドチェックの範囲を赤い線で表示する
     {
         // Gizmosの色を設定します。ここでは赤色に設定しています。
         Gizmos.color = Color.red;
@@ -73,12 +73,12 @@ public class PlayerController : MonoBehaviour
         // groundCheckの位置に円を描画します。
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
     }
-    private bool IsGrounded()
+    private bool IsGrounded() //グランドに着いてるかチェックする
     {
         return Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
-    private void Flip()
+    private void Flip() //反対を向いたときにアニメーションを反転する
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public void Move(InputAction.CallbackContext context)
+    public void Move(InputAction.CallbackContext context) //移動処理
     {
         horizontal = context.ReadValue<Vector2>().x;
     }
