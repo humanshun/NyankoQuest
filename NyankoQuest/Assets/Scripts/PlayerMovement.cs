@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float horizontal; // 水平方向
     private bool isFacingRight = true; // 
     private Animator animator; // アニメーター
+    private GameManager gameManager; 
     public Transform groundCheck; // groundCheckの位置
     public LayerMask groundLayer; // グランドのレイヤー
     public float speed; // プレイヤーの移動速度
@@ -17,11 +18,15 @@ public class PlayerController : MonoBehaviour
     public float enemyDieJump; // 敵を踏んだ時のジャンプ
     public float checkRadius; // groundCheck
 
-    public string Run = "Run"; //
-
+    public string Run = "Run"; //走るアニメーション
 
     void Start()
     {
+        gameManager = GameManager.Instance;
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager instance is null in PlayerRespawn");
+        }
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -30,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-        if (isFacingRight && horizontal < 0f)
+        if (isFacingRight && horizontal < 0f) // キャラクターの向きを変える処理
         {
             Flip();
         }
@@ -39,6 +44,11 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
         Animation();
+
+        if (transform.position.y < -10)
+        {
+            Respawn();
+        }
     }
     private void Animation() //水平方向に入力があるときアニメーションを実行する
     {
@@ -98,6 +108,18 @@ public class PlayerController : MonoBehaviour
             // ジャンプする
             rb.velocity = new Vector2(rb.velocity.x, enemyDieJump);
             Destroy(collision.gameObject);
+        }
+    }
+    private void Respawn()
+    {
+        if (gameManager != null)
+        {
+            transform.position = gameManager.GetCheckpointPosition();
+            Debug.Log("Player respawned at: " + transform.position);
+        }
+        else
+        {
+            Debug.LogError("GameManager instance is null");
         }
     }
 }
