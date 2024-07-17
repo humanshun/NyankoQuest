@@ -1984,7 +1984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12eb5019a891104698a6eccf6eaf2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: GameOver
+  life: 1
 --- !u!1001 &150818562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10059,6 +10060,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 778acf4ca1e87e94ea422cd4d9116443, type: 3}
+--- !u!1 &1172965963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4689159789065282259, guid: 4d2f4b824ef73354b8bfe610cde926b9, type: 3}
+  m_PrefabInstance: {fileID: 1520003766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1172965968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172965963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c780bfd0dcc6243a8f7cea5477ff20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 149707459}
+  sceneName: 2ndstage
 --- !u!4 &1173357406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 962659154544415493, guid: a3e1356b72cd8634ea7cadcb7fc51425, type: 3}
@@ -12843,7 +12863,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4689159789065282259, guid: 4d2f4b824ef73354b8bfe610cde926b9, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1172965968}
   m_SourcePrefab: {fileID: 100100000, guid: 4d2f4b824ef73354b8bfe610cde926b9, type: 3}
 --- !u!4 &1524075274 stripped
 Transform:

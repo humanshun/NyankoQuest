@@ -135,19 +135,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("DieObject"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            diecount--;
-            PlayerPrefs.SetFloat("DieCount", diecount);
-
-            if (diecount <= 0)
-            {
-                SceneManager.LoadScene("GameOver");
-            }
-            else
-            {
-                StartInvincibility();
-            }
+            GameManager.Instance.LoseLife();
+            Debug.Log(GameManager.Instance.life);
         }
     }
 
