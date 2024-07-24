@@ -26,13 +26,6 @@ public class PlayerController : MonoBehaviour
     public float enemyDieJump;
     public float checkRadius;
     public static float diecount;
-    // private Collider2D playerCollider;
-
-
-
-    public string Run = "Run";
-
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
