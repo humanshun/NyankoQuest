@@ -2277,6 +2277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6867970254224840731, guid: bb92105be787618498831a11a183167d, type: 3}
+      propertyPath: EnemyDieSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 346e0d2a608324c4f86209ee5c27fdce, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1414614757937112132, guid: bb92105be787618498831a11a183167d, type: 3}
