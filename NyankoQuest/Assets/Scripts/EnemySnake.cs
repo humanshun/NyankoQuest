@@ -89,7 +89,7 @@ public class EnemySnake : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            gameManager.GameOver();
+            GameManager.Instance.LoseLife();
         }
     }
     private void Flip()

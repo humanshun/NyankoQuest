@@ -79,7 +79,7 @@ public class CrowMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            gameManager.GameOver();
+            GameManager.Instance.LoseLife();
         }
     }
 }

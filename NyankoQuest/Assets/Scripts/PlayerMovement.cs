@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.LoseLife();
 
             // 現在のライフをデバッグログに出力する
-            Debug.Log(GameManager.Instance.life);
+            Debug.Log(GameManager.life);
         }
     }
 }

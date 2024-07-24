@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string GameOverSceneName;
     
     private static GameManager instance;
-    public int life = 1;
+    public static int life = 3;
     public static GameManager Instance
     {
         get
@@ -47,15 +47,12 @@ public class GameManager : MonoBehaviour
         life--;
         if (life <= 0)
         {
+            life = 3;
             SceneManager.LoadScene(GameOverSceneName);
         }
         else
         {
             SceneManager.LoadScene(respawnSceneName);
         }
-    }
-    public void GameOver()
-    {
-        SceneManager.LoadScene(GameOverSceneName);
     }
 }
