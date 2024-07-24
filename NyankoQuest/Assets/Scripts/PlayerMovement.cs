@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     private Animator animator; // Rigidbody2D コンポーネント
     private Rigidbody2D rb; // Animator コンポーネント
-    public AudioSource audioSource; // AudioSourceコンポーネント
+    private AudioSource audioSource; // AudioSourceコンポーネント
     public AudioClip jumpAudio; // ジャンプ音
     public AudioClip RunAudio; // 走る音
     private float horizontal; // 水平方向の移動量
