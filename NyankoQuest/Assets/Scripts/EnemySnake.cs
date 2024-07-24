@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemySnake : MonoBehaviour
 {
+    public GameManager gameManager;
     public float speed = 5.0f; // 移動速度
     public Transform leftBoundary; // 左の境界位置
     public Transform rightBoundary; // 右の境界位置
@@ -11,6 +12,7 @@ public class EnemySnake : MonoBehaviour
 
     private Rigidbody2D rb; // Rigidbody2Dコンポーネントの参照
     private bool movingLeft = true; // 現在の移動方向を示すフラグ
+    private bool isFacingRight = false;
 
     // 初期化処理
     void Start()
@@ -45,6 +47,14 @@ public class EnemySnake : MonoBehaviour
             // 右に移動
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
+        if (movingLeft && isFacingRight)
+        {
+            Flip();
+        }
+        else if (!movingLeft && !isFacingRight)
+        {
+            Flip();
+        }
     }
 
     // 移動方向のチェック処理
@@ -75,12 +85,18 @@ public class EnemySnake : MonoBehaviour
     }
 
     // トリガー衝突時の処理
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 衝突したオブジェクトがプレイヤーである場合
-        if (collision.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            gameManager.GameOver();
         }
+    }
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 }

@@ -64,9 +64,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008498536, y: 0.0000032063735}
-  m_Size: {x: 0.9419063, y: 1.9932355}
-  m_Direction: 0
+  m_Offset: {x: -0.10476827, y: 0.18871489}
+  m_Size: {x: 5.9024377, y: 1.2774897}
+  m_Direction: 1
 --- !u!1 &5371732533921799455
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +79,8 @@ GameObject:
   - component: {fileID: 4631288312024150172}
   - component: {fileID: 2655037558985889692}
   - component: {fileID: 2712643018345472139}
-  - component: {fileID: 1612496404416879048}
+  - component: {fileID: 5577630294358488010}
+  - component: {fileID: 5049829006271632868}
   m_Layer: 0
   m_Name: EnemySnake
   m_TagString: Enemy
@@ -95,14 +96,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5371732533921799455}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.2286, y: -2.405, z: 0}
-  m_LocalScale: {x: 0.4828, y: 1.9333, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3813211267966280381}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4631288312024150172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,9 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41c7f7398a666e4994b64780003c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   speed: 5
-  leftBoundary: {fileID: 1840036102878471435, guid: 971d2e62ba02b504e95f38e37e0a2681, type: 3}
-  rightBoundary: {fileID: 5721906404740243218, guid: 5defa2fdc4d312e4a8c64cfb2971f3bd, type: 3}
+  leftBoundary: {fileID: 0}
+  rightBoundary: {fileID: 0}
   jumpForce: 20
   jumpInterval: 3
 --- !u!212 &2655037558985889692
@@ -161,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71aef5b74c5d67a42b437b786f42382d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,7 +201,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &1612496404416879048
+--- !u!95 &5577630294358488010
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5371732533921799455}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cac96ae7809201a47a86e55636944412, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &5049829006271632868
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,6 +254,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005362287, y: -3.275191e-17}
-  m_Size: {x: 0.9892734, y: 1.9999999}
-  m_Direction: 0
+  m_Offset: {x: -0.13933848, y: 0.22836892}
+  m_Size: {x: 6.182481, y: 1.369249}
+  m_Direction: 1
