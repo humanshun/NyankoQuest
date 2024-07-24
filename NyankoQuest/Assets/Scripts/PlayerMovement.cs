@@ -5,6 +5,9 @@ public class PlayerController : MonoBehaviour
 {
     private Animator animator; // Rigidbody2D コンポーネント
     private Rigidbody2D rb; // Animator コンポーネント
+    public AudioSource audioSource; // AudioSourceコンポーネント
+    public AudioClip jumpAudio; // ジャンプ音
+    public AudioClip RunAudio; // 走る音
     private float horizontal; // 水平方向の移動量
     private bool isFacingRight = true; // キャラクターが右を向いているかどうか
     public Transform groundCheck; // 地面の判定に使用する Transform オブジェクト
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public static float diecount; // 残機
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -43,6 +47,7 @@ public class PlayerController : MonoBehaviour
         if (!IsGrounded())
         {
             animator.SetBool("Jump", true); // ついていなかったら
+            audioSource.PlayOneShot(jumpAudio);
         }
         else
         {
@@ -52,6 +57,7 @@ public class PlayerController : MonoBehaviour
             if (horizontal != 0)
             {
                 animator.SetBool("Run", true); // 移動していたら
+                audioSource.PlayOneShot(RunAudio);
             }
             else
             {
