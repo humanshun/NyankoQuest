@@ -1,21 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
+    [SerializeField] private string respawnSceneName;
+    [SerializeField] private string GameOverSceneName;
     
-    public static GameManager Instance;
-
-    private Vector2 checkpointPosition;
-
-    private void Awake()
+    private static GameManager instance;
+    public int life = 1;
+    public static GameManager Instance
     {
-        if (Instance == null)
+        get
         {
-            Instance = this;
+            if (instance == null)
+            {
+                instance = FindObjectOfType<GameManager>();
+
+                if (instance == null)
+                {
+                    GameObject obj = new GameObject("GameManager");
+                    instance = obj.AddComponent<GameManager>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -24,17 +42,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetCheckpoint(Vector2 newCheckpointPosition)
+    public void LoseLife()
     {
-        checkpointPosition = newCheckpointPosition;
-    }
-
-    public Vector2 GetCheckpointPosition()
-    {
-        return checkpointPosition;
+        life--;
+        if (life <= 0)
+        {
+            SceneManager.LoadScene(GameOverSceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(respawnSceneName);
+        }
     }
     public void GameOver()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(GameOverSceneName);
     }
 }

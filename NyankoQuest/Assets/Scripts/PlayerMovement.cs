@@ -3,39 +3,67 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb; //Rigidbody2D
-    private float horizontal; // 水平方向
-    private bool isFacingRight = true; // 
-    private Animator animator; // アニメーター
-    private GameManager gameManager; 
-    public Transform groundCheck; // groundCheckの位置
-    public LayerMask groundLayer; // グランドのレイヤー
-    public float speed; // プレイヤーの移動速度
-    public float jumpingPower; // プレイヤーのジャンプ
-    public float enemyDieJump; // 敵を踏んだ時のジャンプ
-    public float checkRadius; // groundCheck
+    private Rigidbody2D rb;
+    private float horizontal;
+    private bool isFacingRight = true;
+    private Animator animator;
+    private bool isInvincible = false;
+    private float invincibleTimer = 0f;
+    private float blinkTimer = 0f;
+    public float invincibleTime = 2f;
+    public float blinkInterval = 0.2f;
 
-    public string Run = "Run"; //走るアニメーション
+
+    private SpriteRenderer spriteRenderer;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+    public float speed;
+    public float jumpingPower;
+    public float enemyDieJump;
+    public float checkRadius;
+    public static float diecount;
+    // private Collider2D playerCollider;
+
+
+
+    public string Run = "Run";
+
 
     void Start()
     {
-        gameManager = GameManager.Instance;
-        if (gameManager == null)
-        {
-            Debug.LogError("GameManager instance is null in PlayerRespawn");
-        }
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        // playerCollider = GetComponent<Collider2D>();
+
+        diecount = 3f;
     }
 
     void Update()
     {
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            blinkTimer -=  Time.deltaTime;
+
+            if (blinkTimer <= 0f)
+            {
+                spriteRenderer.enabled = !spriteRenderer.enabled;
+                blinkTimer = blinkInterval;
+            }
+            if (invincibleTimer <= 0)
+            {
+                isInvincible = false;
+                spriteRenderer.enabled = true;
+            }
+        }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-        if (isFacingRight && horizontal < 0f) // キャラクターの向きを変える処理
+        if (isFacingRight && horizontal < 0f)
         {
             Flip();
         }
@@ -44,13 +72,8 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
         Animation();
-
-        if (transform.position.y < -10)
-        {
-            Respawn();
-        }
     }
-    private void Animation() //水平方向に入力があるときアニメーションを実行する
+    private void Animation()
     {
         if (horizontal != 0)
         {
@@ -62,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Jump(InputAction.CallbackContext context) //ジャンプする
+    public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed && IsGrounded())
         {
@@ -75,7 +98,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos() //グランドチェックの範囲を赤い線で表示する
+    private void OnDrawGizmos()
     {
         // Gizmosの色を設定します。ここでは赤色に設定しています。
         Gizmos.color = Color.red;
@@ -83,12 +106,12 @@ public class PlayerController : MonoBehaviour
         // groundCheckの位置に円を描画します。
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
     }
-    private bool IsGrounded() //グランドに着いてるかチェックする
+    private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
-    private void Flip() //反対を向いたときにアニメーションを反転する
+    private void Flip()
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -96,7 +119,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public void Move(InputAction.CallbackContext context) //移動処理
+    public void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
     }
@@ -110,16 +133,21 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    private void Respawn()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (gameManager != null)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            transform.position = gameManager.GetCheckpointPosition();
-            Debug.Log("Player respawned at: " + transform.position);
+            GameManager.Instance.LoseLife();
+            Debug.Log(GameManager.Instance.life);
         }
-        else
-        {
-            Debug.LogError("GameManager instance is null");
-        }
+    }
+
+    private void StartInvincibility()
+    {
+        isInvincible = true;
+        invincibleTimer = invincibleTime;
+        blinkTimer = blinkInterval;
+        spriteRenderer.enabled =false;
+        // playerCollider.enabled = false;
     }
 }
