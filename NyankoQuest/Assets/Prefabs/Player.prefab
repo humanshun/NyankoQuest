@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc40013febac6364d8b93a11efa7c48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpAudio: {fileID: 0}
-  RunAudio: {fileID: 0}
+  jumpAudio: {fileID: 8300000, guid: 2530561aad994e14099397c2ef6a421a, type: 3}
+  RunAudio: {fileID: 8300000, guid: 6e169eb1f2f9a8e4b9c92543797bd248, type: 3}
   groundCheck: {fileID: 63107740279271840}
   groundLayer:
     serializedVersion: 2
