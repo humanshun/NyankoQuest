@@ -11,22 +11,12 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     private bool isFacingRight = true;
     private Animator animator;
-    private bool isInvincible = false;
-    private float invincibleTimer = 0f;
-    private float blinkTimer = 0f;
-    public float invincibleTime = 2f;
-    public float blinkInterval = 0.2f;
-
-
-    private SpriteRenderer spriteRenderer;
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float speed;
     public float jumpingPower;
     public float enemyDieJump;
     public float checkRadius;
-    public static float diecount;
-    // private Collider2D playerCollider;
 
 
 
@@ -37,30 +27,10 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        // playerCollider = GetComponent<Collider2D>();
-
-        diecount = 3f;
     }
 
     void Update()
     {
-        if (isInvincible)
-        {
-            invincibleTimer -= Time.deltaTime;
-            blinkTimer -=  Time.deltaTime;
-
-            if (blinkTimer <= 0f)
-            {
-                spriteRenderer.enabled = !spriteRenderer.enabled;
-                blinkTimer = blinkInterval;
-            }
-            if (invincibleTimer <= 0)
-            {
-                isInvincible = false;
-                spriteRenderer.enabled = true;
-            }
-        }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         if (isFacingRight && horizontal < 0f)
@@ -140,14 +110,5 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.LoseLife();
             Debug.Log(GameManager.Instance.life);
         }
-    }
-
-    private void StartInvincibility()
-    {
-        isInvincible = true;
-        invincibleTimer = invincibleTime;
-        blinkTimer = blinkInterval;
-        spriteRenderer.enabled =false;
-        // playerCollider.enabled = false;
     }
 }
