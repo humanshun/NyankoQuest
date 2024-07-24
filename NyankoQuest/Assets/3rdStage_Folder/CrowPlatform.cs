@@ -1,48 +1,50 @@
 using UnityEngine;
 
-public class CrowPlatform : MonoBehaviour
+public class CustomTriggerAreaController : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
-    private BoxCollider2D triggerCollider;
+    public GameObject targetObject; // コライダーを非表示にする対象のゲームオブジェクト
+    public Vector3 areaCenter = Vector3.zero; // トリガーエリアの中心
+    public Vector3 areaSize = new Vector3(5.0f, 5.0f, 5.0f); // トリガーエリアのサイズ
+
+    private Collider[] targetColliders;
 
     void Start()
     {
-        BoxCollider2D[] colliders = GetComponents<BoxCollider2D>();
-        if (colliders.Length != 2)
-        {
-            Debug.LogError("Platform should have exactly two BoxCollider2D components.");
-            return;
-        }
-
-        boxCollider = colliders[0];
-        triggerCollider = colliders[1];
-        triggerCollider.isTrigger = true; // 2つ目のコライダーをトリガーに設定
+        // targetObject からすべてのコライダーを取得
+        targetColliders = targetObject.GetComponents<Collider>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Update()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Vector3 worldCenter = transform.position + areaCenter;
+        Bounds triggerBounds = new Bounds(worldCenter, areaSize);
+
+        // エリア内に "エネミー" タグのオブジェクトが存在するかどうかをチェック
+        bool isEnemyInside = false;
+        Collider[] hitColliders = Physics.OverlapBox(worldCenter, areaSize / 2);
+        foreach (var hitCollider in hitColliders)
         {
-            Debug.Log("Crow has landed on the platform");
-            // 必要な処理をここに追加
+            if (hitCollider.CompareTag("Enemy"))
+            {
+                isEnemyInside = true;
+                break;
+            }
+        }
+
+        // targetObject のコライダーの表示/非表示を切り替え
+        if (targetColliders != null)
+        {
+            foreach (var collider in targetColliders)
+            {
+                collider.enabled = isEnemyInside;
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    // ギズモでトリガーエリアを可視化
+    void OnDrawGizmos()
     {
-        if (collider.CompareTag("Player"))
-        {
-            // プレイヤーがトリガーに入った場合、プレイヤーとの衝突を無視する
-            Physics2D.IgnoreCollision(collider, boxCollider, true);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Player"))
-        {
-            // プレイヤーがトリガーから出た場合、プレイヤーとの衝突を再び有効にする
-            Physics2D.IgnoreCollision(collider, boxCollider, false);
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position + areaCenter, areaSize);
     }
 }
