@@ -1,7 +1,7 @@
 using UnityEngine;
+using System.Collections;
 
 public class KeepPlatformAligned : MonoBehaviour
-//回転足場を常に上向きにする
 {
     public Transform rotatingCross; // 回転する骨組みのTransform
 
@@ -14,6 +14,7 @@ public class KeepPlatformAligned : MonoBehaviour
         Vector3 crossRotation = rotatingCross.rotation.eulerAngles;
         transform.Rotate(0, 0, -crossRotation.z);
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Player")
