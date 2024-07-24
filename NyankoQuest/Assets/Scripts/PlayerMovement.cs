@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb; // Animator コンポーネント
     private AudioSource audioSource; // AudioSourceコンポーネント
     public AudioClip jumpAudio; // ジャンプ音
-    public AudioClip RunAudio; // 走る音
+    public AudioClip EnemyDieSound; // 敵を倒した時の音
     private float horizontal; // 水平方向の移動量
     private bool isFacingRight = true; // キャラクターが右を向いているかどうか
     public Transform groundCheck; // 地面の判定に使用する Transform オブジェクト
@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
+        Audio();
+
         Animation();
     }
     private void Animation()
@@ -47,7 +49,6 @@ public class PlayerController : MonoBehaviour
         if (!IsGrounded())
         {
             animator.SetBool("Jump", true); // ついていなかったら
-            audioSource.PlayOneShot(jumpAudio);
         }
         else
         {
@@ -57,12 +58,19 @@ public class PlayerController : MonoBehaviour
             if (horizontal != 0)
             {
                 animator.SetBool("Run", true); // 移動していたら
-                audioSource.PlayOneShot(RunAudio);
             }
             else
             {
                 animator.SetBool("Run", false); // 移動していなかったら
             }
+        }
+    }
+    private void Audio()
+    {
+        // スペースキーが押されたときに音を再生
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            audioSource.PlayOneShot(jumpAudio);
         }
     }
 
@@ -130,6 +138,9 @@ public class PlayerController : MonoBehaviour
             // ジャンプする
             rb.velocity = new Vector2(rb.velocity.x, enemyDieJump);
             Destroy(collision.gameObject);
+
+            // 音を鳴らす
+            audioSource.PlayOneShot(EnemyDieSound);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
